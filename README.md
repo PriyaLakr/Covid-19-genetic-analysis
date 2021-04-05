@@ -46,7 +46,7 @@ Input data: Base data (GWAS summary stats file) This file contains the informati
 ##detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   https://zzz.bwh.harvard.edu/plink/dataman.shtml
 
 # Data visualization with R
-
+	BiocManager::install("package_name")
 	library(ggplot2)
 	library(dplyr)
 	library(qqman)
@@ -65,27 +65,27 @@ Input data: Base data (GWAS summary stats file) This file contains the informati
 
 	write.csv(prs_data, file = "prs_data.csv") #to save prs_data file
 
-	BiocManager::install("package_name")
+	
 
-1. Scatter plot
+Scatter plot
 
 	ggscatter(data_filename,x="mean.SCORE.", y="log.deaths.", add="reg.line",conf.int=T, cor.coef=T, cor.method = "spearman", ylab = "No.of deaths due to COVID", xlab = "name", title = "Spearman correlation")
 
 
-2. qq plots 
+qq plots 
 
 	ggqqplot(data_filename$column_which_data_needstobeanalysed)
 
 	shapiro.test(data_filename$column_which_data_needstobe_analysed)
 
 
-3. Manhattan plot
+Manhattan plot
 
 	dat <- read.csv("top100_inIGV.csv", sep = "\t")
 	manhattan(dat, chr = "chr", snp = "SNP", p = "P", bp = "pos", col = c("red","green","blue"))
 
  
-4. Histogram
+Histogram
 
 	neg_control <- read.csv("nc.csv", sep = ",")
 	head(neg_control)
