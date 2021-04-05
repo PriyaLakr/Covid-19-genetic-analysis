@@ -43,7 +43,9 @@ awk 'NR>1{print $2}' IGVout.nopred > snps_to_flip
 
 ./plink --bfile output_filename --score summary_stats_filename 1 2 3 --flip snps_to_flip --out final_out
 
-## detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   https://zzz.bwh.harvard.edu/plink/dataman.shtml
+##detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   https://zzz.bwh.harvard.edu/plink/dataman.shtml
+
+# Data visualization with R
 
 library(ggplot2)
 library(dplyr)
@@ -65,38 +67,26 @@ write.csv(prs_data, file = "prs_data.csv") #to save prs_data file
 
 BiocManager::install("package_name")
 
+1. Scatter plot
 ggscatter(data_filename,x="mean.SCORE.", y="log.deaths.", add="reg.line",conf.int=T, cor.coef=T, cor.method = "spearman", ylab = "No.of deaths due to COVID", xlab = "name", title = "Spearman correlation")
 
-## qq plots 
+
+2. qq plots 
 
 ggqqplot(data_filename$column_which_data_needstobeanalysed)
 
 shapiro.test(data_filename$column_which_data_needstobe_analysed)
 
 
-## http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r
-
-## https://rpkgs.datanovia.com/ggpubr/reference/stat_cor.html
-
-
-## Manhattan plot
+3. Manhattan plot
 dat <- read.csv("top100_inIGV.csv", sep = "\t")
 library(qqman)
 manhattan(dat, chr = "chr", snp = "SNP", p = "P", bp = "pos", col = c("red","green","blue"))
 
-
-# for loop syntax in r
-x <- c(2,5,3,9,8,11)
-count <- 0
-for (val in x) { if(val %% 2 == 0) count = count + 1 }
-print(count)
-
  
-# Histogram
+4. Histogram
 nc <- read.csv("nc.csv", sep = ",")
 head(nc)
-# pval Rval 
-# 1      1  ... so on
 hist(nc$pval, xlab = "p values")
 
 
