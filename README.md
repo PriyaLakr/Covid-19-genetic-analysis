@@ -50,26 +50,29 @@ Input data: Base data (GWAS summary stats file) This file contains the informati
 	library(ggplot2)
 	library(dplyr)
 	library(qqman)
+	library(ggpubr)
 
 	setwd("/Users/priyalakra/Desktop/2021/IITDelhi/Covid19-GWAS")
 
 	prs <- read.csv("PRS.csv", sep = ",")
 	head(prs)
+	
+	
+Calculating median PRS for each population
 
 	prs_data <- prs %>%
 	+ group_by(POP) %>%
 	+ summarise(median(SCORE))
 
-	graph <- ggplot(prs, aes(x= POP, y=SCORE)) + geom_boxplot() + theme(axis.text.x = element_text(angle=90,vjust = 0.7), plot.title = element_text (hjust = 0.5))+ geom_jitter(width=0.2,alpha=0.4) + ggtitle("Distribution of PRS scores across IGV Populations")+xlab("Populations")+ylab("Polygenic risk score")
-
-
 	write.csv(prs_data, file = "prs_data.csv") #to save prs_data file
 
 	
 
-Scatter plot
+Scatter plot and box plot
 
 	ggscatter(data_filename,x="mean.SCORE.", y="log.deaths.", add="reg.line",conf.int=T, cor.coef=T, cor.method = "spearman", ylab = "No.of deaths due to COVID", xlab = "name", title = "Spearman correlation")
+	
+	graph <- ggplot(prs, aes(x= POP, y=SCORE)) + geom_boxplot() + theme(axis.text.x = element_text(angle=90,vjust = 0.7), plot.title = element_text (hjust = 0.5))+ geom_jitter(width=0.2,alpha=0.4) + ggtitle("Distribution of PRS scores across IGV populations")+xlab("Populations")+ylab("Polygenic risk score")
 
 
 qq plots 
