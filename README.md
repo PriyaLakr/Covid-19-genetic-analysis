@@ -5,7 +5,7 @@
 
 Softwares: ./plink --version (PLINK v1.90b6.21 64-bit (19 Oct 2020))
 
-Input data: Base data (GWAS summary stats file) This file contains the information about variants, their effect size (given either # as beta or OR), chromosomal location, p value, error , etc. Target data (in plink binary formats : .bed, .bim, .fam, .cov (covariates file), .pheno (phenotype file))
+Input data: Base data (GWAS summary stats file) This file contains the information about variants, their effect size (given either as beta or OR), chromosomal location, p value, error, etc. Target data (in plink binary formats: .bed, .bim, .fam, .cov (covariates file), .pheno (phenotype file))
 
 
 	cd plink_mac_20201019
@@ -39,11 +39,11 @@ Input data: Base data (GWAS summary stats file) This file contains the informati
 
 	head out_file.nopred
 
-	awk 'NR>1{print $2}' IGVout.nopred > snps_to_flip
+	awk 'NR>1{print $2}' out_file.nopred > snps_to_flip
 
 	./plink --bfile output_filename --score summary_stats_filename 1 2 3 --flip snps_to_flip --out final_out
 
-##detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   https://zzz.bwh.harvard.edu/plink/dataman.shtml
+Detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   https://zzz.bwh.harvard.edu/plink/dataman.shtml
 
 # Data visualization with R
 	BiocManager::install("package_name")
@@ -61,8 +61,8 @@ Input data: Base data (GWAS summary stats file) This file contains the informati
 Calculating median PRS for each population
 
 	prs_data <- prs %>%
-	+ group_by(POP) %>%
-	+ summarise(median(SCORE))
+	 group_by(POP) %>%
+	 summarise(median(SCORE))
 
 	write.csv(prs_data, file = "prs_data.csv") #to save prs_data file
 
