@@ -49,7 +49,8 @@ Detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   http
 	
 Codes in scripts folder!!
 	
-Calculating median PRS for each population
+Calculating median PRS for each population!!
+
 Histogram, scatter, box, qq and Manhattan plot
 
 	
