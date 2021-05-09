@@ -52,7 +52,7 @@ Detailed description : https://choishingwan.github.io/PRS-Tutorial/plink/   http
 	library(qqman)
 	library(ggpubr)
 
-	setwd("/Users/priyalakra/Desktop/2021/IITDelhi/Covid19-GWAS")
+	setwd("/working/director")
 
 	prs <- read.csv("PRS.csv", sep = ",")
 	head(prs)
@@ -72,7 +72,7 @@ Scatter plot and box plot
 
 	ggscatter(data_filename,x="mean.SCORE.", y="log.deaths.", add="reg.line",conf.int=T, cor.coef=T, cor.method = "spearman", ylab = "No.of deaths due to COVID", xlab = "name", title = "Spearman correlation")
 	
-	graph <- ggplot(prs, aes(x= POP, y=SCORE)) + geom_boxplot() + theme(axis.text.x = element_text(angle=90,vjust = 0.7), plot.title = element_text (hjust = 0.5))+ geom_jitter(width=0.2,alpha=0.4) + ggtitle("Distribution of PRS scores across IGV populations")+xlab("Populations")+ylab("Polygenic risk score")
+	graph <- ggplot(prs, aes(x= POP, y=SCORE)) + geom_boxplot() + theme(axis.text.x = element_text(angle=90,vjust = 0.7), plot.title = element_text (hjust = 0.5))+ geom_jitter(width=0.2,alpha=0.4) + ggtitle("Distribution of PRS scores")+xlab("Populations")+ylab("Polygenic risk score")
 
 
 qq plots 
@@ -84,7 +84,7 @@ qq plots
 
 Manhattan plot
 
-	dat <- read.csv("top100_inIGV.csv", sep = "\t")
+	dat <- read.csv("infile.csv", sep = "\t")
 	manhattan(dat, chr = "chr", snp = "SNP", p = "P", bp = "pos", col = c("red","green","blue"))
 
  
