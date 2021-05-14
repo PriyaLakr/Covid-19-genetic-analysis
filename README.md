@@ -1,4 +1,4 @@
-# Covid-19-genetic-analysis
+# GWAS data analysis
 
 
 # Polygenic risk score calculation 
